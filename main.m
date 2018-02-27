@@ -23,7 +23,7 @@ U = [D(:), T(:), polarity(:)];
 
 
 % adaboost, 10 binary classifiers for each digit
-for i = 1 : 10
+for i = 8 : 10
 %     ind_pos = find(train_labels == i-1);
 %     ind_nega = find(train_labels ~= i-1);
 %     tmp = randperm(length(ind_nega), length(ind_pos));
