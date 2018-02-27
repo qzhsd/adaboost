@@ -45,16 +45,5 @@ for i = 1 : 10
     clear alpha_t w_t train_errors final_test_score test_errors largest_weights margins
 end
 
-% final classifier and test errors
-% final_scores = [final_scores, final_test_score];
-% [~, inds] = max(final_scores, [], 2);
-% inds = inds - 1;
-% final_error = 1 - sum(inds == test_labels) * 1.0 / length(test_labels)
-
-% result visualization
-% plot train/test errors, margins, index of the largest weight, three
-% heaviest weights, weak learners
-
-
 
 
