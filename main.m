@@ -23,7 +23,7 @@ U = [D(:), T(:), polarity(:)];
 
 
 % adaboost, 10 binary classifiers for each digit
-for i = 1 : 10
+for i = 3 : 10
 %     ind_pos = find(train_labels == i-1);
 %     ind_nega = find(train_labels ~= i-1);
 %     tmp = randperm(length(ind_nega), length(ind_pos));
@@ -39,10 +39,10 @@ for i = 1 : 10
 %     t_test_labels = test_labels(ind_i);
     msg = ['classifier for digit ', num2str(i-1)];
     disp(msg);
-    [alphas, ws, train_errors, final_test_score, test_errors, largest_weights, margins] = adaboost(train_imgs, train_labels, test_imgs, test_labels, i-1, U, max_iter);
+    [alphas, ws, train_errors, final_test_score, test_errors, largest_weights, margins, weights] = adaboost(train_imgs, train_labels, test_imgs, test_labels, i-1, U, max_iter);
     result_path = ['./results/', 'digit', num2str(i-1)];
-    save(result_path, 'alphas', 'ws', 'train_errors', 'final_test_score', 'test_errors', 'largest_weights', 'margins');
-    clear alpha_t w_t train_errors final_test_score test_errors largest_weights margins
+    save(result_path, 'alphas', 'ws', 'train_errors', 'final_test_score', 'test_errors', 'largest_weights', 'margins', 'weights');
+    clear alpha_t w_t train_errors final_test_score test_errors largest_weights margins weights
 end
 
 

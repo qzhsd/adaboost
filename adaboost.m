@@ -1,4 +1,4 @@
-function [alphas, ws, train_errors, final_test_score, test_errors, largest_weights, margins] = adaboost(train_imgs, train_labels, test_imgs, test_labels, digit, U, max_iter)
+function [alphas, ws, train_errors, final_test_score, test_errors, largest_weights, margins, weights] = adaboost(train_imgs, train_labels, test_imgs, test_labels, digit, U, max_iter)
 % INPUTS:
 % train_imgs, test_imgs: N * d
 % train_labels, test_labels: N*1
@@ -32,12 +32,13 @@ test_errors = zeros(max_iter, 1);
 
 largest_weights = zeros(max_iter, 1);
 margins = [];
+weights = zeros(N, max_iter);
 
 
 for t = 1 : max_iter
     % dataset reweighting
     sample_weights = exp(-train_labels .* g_t_train);
-    
+    weights(:, t) = sample_weights;
     % weak learner selection alpha_t
     % alpha_t: 1*3, y_predict: N*1
     [alpha_t, train_pred] = select_weak_learner(train_imgs, train_labels, U, sample_weights);
