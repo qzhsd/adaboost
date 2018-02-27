@@ -4,6 +4,7 @@
 data_path = './data/data.mat';
 load(data_path);
 
+final_scores = [];
 for i = 0 : 9
     result_path = ['./results/', 'digit', num2str(i)];
     load(result_path);
@@ -70,11 +71,13 @@ for i = 0 : 9
     imshow(reshape(a, 28, 28)', []);
     fig_path = ['./results/weak_learner', num2str(i)];
     saveas(gcf, fig_path, 'epsc');
+    
+    % final classifier
+    final_scores = [final_scores, final_test_score];
 end
 
 
 % final classifier and test errors
-% final_scores = [final_scores, final_test_score];
-% [~, inds] = max(final_scores, [], 2);
-% inds = inds - 1;
-% final_error = 1 - sum(inds == test_labels) * 1.0 / length(test_labels)
+[~, inds] = max(final_scores, [], 2);
+inds = inds - 1;
+final_error = 1 - sum(inds == test_labels) * 1.0 / length(test_labels)
